@@ -16,7 +16,8 @@ const status = (state = initialState, action) => {
         case "TOGGLE_STATUS_SUCCESS":
             return Object.assign({}, state, {
                 data: {
-                    isOn: !state.data.isOn
+                    isOn: !state.data.isOn,
+                    perf: state.data.perf
                 }
             })
 
