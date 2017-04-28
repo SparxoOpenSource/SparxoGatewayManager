@@ -58,6 +58,7 @@ class httpService {
         return fetch(this.url, {
             method: 'PUT',
             headers: Object.assign({}, this._headers, headers),
+            credentials: 'include'
         })
             .then(res => {
                 return res.json()
