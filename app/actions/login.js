@@ -12,15 +12,16 @@ export const login = (data) => (dispatch, getState) => {
     dispatch({
         type: "BEGIN_LOADING"
     })
-    http.api(urls.login).post(data, { "content-type": "application/json" })
+    http.api(urls.login).post(data, { "Content-Type": "application/json" },(res)=>res.text())
         .then(res => {
-            if(!res){
+            if (!res) {
                 message.error('login fail!')
             }
             dispatch({
                 type: "GET_LOGIN_STATUS_SUCCESS",
                 payload: {
-                    data: res
+                    data: res,
+                    is_login: true
                 }
             })
 

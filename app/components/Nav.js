@@ -14,18 +14,19 @@ export default class Nav extends React.Component {
 
 
     render() {
+
         const defaultSelectedKeys = this.props.location.pathname.substr(1)
         return (
             <div className="page-wrapper">
                 <header id="header">
                     <Row>
-                        <Col xs={24} sm={24} md={8} lg={6}>
+                        <Col xs={12} sm={12} md={12} lg={12}>
                             <a className="logo">
                                 <img src="../img/new_logo.png" />
                                 <span>GateWay Manage</span>
                             </a>
                         </Col>
-                        <Col xs={24} sm={24} md={16} lg={18}>
+                        <Col xs={12} sm={12} md={12} lg={12}>
                             <div className="login_info">
                                 <span>admin</span>
                                 <span style={{ marginLeft: "10px" }}>welcome!</span>

@@ -3,7 +3,8 @@ import Login from '../../components/login/Login'
 import { login } from "../../actions/login"
 
 const mapStateToProps = (state, ownProps) => ({
-    is_login: state.login.is_login
+    is_login: state.login.is_login,
+    token: state.login.token
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

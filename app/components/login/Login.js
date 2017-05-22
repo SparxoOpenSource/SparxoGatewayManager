@@ -17,18 +17,19 @@ export default class Login extends React.Component {
         this.props.login(values)
     }
 
-    componentDidUpdate(){
-        if(this.props.is_login){
-           hashHistory.push({
-               pathname: '/home'
-           }) 
+    componentDidUpdate() {
+        if (this.props.is_login) {
+            sessionStorage.is_login = true;
+            sessionStorage.token = this.props.token;
+            hashHistory.push({
+                pathname: '/home'
+            })
         }
     }
 
     render() {
         const WrappedLoginForm = Form.create()(LoginForm)
         const {login, is_login} = this.props
-        
         return (
             <div className="login-container">
                 <div className='login-wapper'>

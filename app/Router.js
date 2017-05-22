@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, hashHistory, IndexRoute, browserHistory } from 'react-router'
+import { Router, Route, hashHistory, IndexRoute, browserHistory, Redirect } from 'react-router'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
@@ -32,7 +32,12 @@ render((
         <Router history={hashHistory}>
             <Route path="/login" component={Login}></Route>
             <Route path="/" component={Login}></Route>
-            <Route path="/home" component={NavCon}>
+            <Route path="/home" component={NavCon} onEnter={(nextState, replace, callback) => {
+                if (!sessionStorage.is_login) { 
+                    replace(`/`)
+                }
+                callback();
+            } }>
                 <IndexRoute component={Gateway}></IndexRoute>
                 <Route path="/gateway" component={Gateway}></Route>
                 <Route path="/status" component={Status}></Route>

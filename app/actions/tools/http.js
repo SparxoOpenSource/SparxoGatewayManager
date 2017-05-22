@@ -65,7 +65,7 @@ class httpService {
             })
     }
 
-    post(data, headers) {
+    post(data, headers, callbackfn) {
         return fetch(this.url, {
             method: 'POST',
             headers: Object.assign({}, this._headers, headers),
@@ -73,6 +73,9 @@ class httpService {
             credentials: 'include'
         })
             .then(res => {
+                if (callbackfn) {
+                    return callbackfn(res);
+                }
                 return res.json()
             })
     }

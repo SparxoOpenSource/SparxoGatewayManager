@@ -40,6 +40,7 @@ export default class Gateway extends React.Component {
         expandedRowKeys: ''
     }
 
+
     componentDidMount() {
         var url_param = {
             bTime: this.state.startValue,
@@ -122,7 +123,7 @@ export default class Gateway extends React.Component {
                         defaultValue={moment()}
                         onChange={this.onStartChange}
                         size="large"
-                        style={{ marginRight: "20px" }}
+                        style={{ marginRight: "20px", fontSize: '16px' }}
                         />
                     <DatePicker disabledDate={this.disabledEndDate}
                         showToday
