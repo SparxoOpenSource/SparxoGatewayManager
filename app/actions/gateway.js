@@ -8,13 +8,15 @@ const urls = {
     toggle_gateway_status: config.apiRoot + ":5000/gateway/status/online"
 }
 
-const headers = { "Content-Type": "application/json", "Auth-Cookie": sessionStorage.token };
+function headers(){
+    return  { "Content-Type": "application/json", "Auth-Cookie": sessionStorage.token };
+}
 
 export const getEvents = (params) => (dispatch, getState) => {
     dispatch({
         type: "SHOW_PROGRESS"
     })
-    http.api(urls.gateway).get(params, headers)
+    http.api(urls.gateway).get(params, headers())
         .then(data => {
             dispatch({
                 type: "GET_EVENTS_SUCCESS",
@@ -33,7 +35,7 @@ export const getEventDetail = (params) => (dispatch, getState) => {
     dispatch({
         type: "BEGIN_LOADING"
     })
-    http.api(urls.gateway_detail).get(params, headers)
+    http.api(urls.gateway_detail).get(params, headers())
         .then(data => {
             dispatch({
                 type: "GET_EVENT_DETAIL_SUCCESS",
@@ -50,7 +52,7 @@ export const getEventDetail = (params) => (dispatch, getState) => {
 }
 
 export const getGatewayStatus = () => (dispatch, getState) => {
-    http.api(urls.gateway_status).get({}, headers)
+    http.api(urls.gateway_status).get({}, headers())
         .then(data => {
             dispatch({
                 type: "GET_GATEWAY_STATUS_SUCCESS",
@@ -62,7 +64,7 @@ export const getGatewayStatus = () => (dispatch, getState) => {
 }
 
 export const toggleGatewayStatus = () => (dispatch, getState) => {
-    http.api(urls.toggle_gateway_status).put_nodata(headers)
+    http.api(urls.toggle_gateway_status).put_nodata(headers())
         .then(data => {
             dispatch({
                 type: "TOGGLE_STATUS_SUCCESS"
