@@ -13,7 +13,7 @@ module.exports = {
     entry: ['webpack/hot/dev-server', path.resolve(__dirname, 'app/Router.js')],
 
     output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
 
