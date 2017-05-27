@@ -64,6 +64,7 @@ export default class Statistics extends React.Component {
     render() {
         const { startValue, endValue, dateFormat} = this.state
         const {items, is_loading} = this.props
+
         return (
             <div className="main-container">
                 <h1>Statistics</h1>
