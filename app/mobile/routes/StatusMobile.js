@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import StatusMobileCon from '../containers/statisticsMobile/StatisticsMobileCon'
+import StatusMobileCon from '../containers/statusMobile/StatusMobileCon'
 
 import { LocaleProvider } from 'antd-mobile';
 import enUS from 'antd-mobile/lib/locale-provider/en_US';

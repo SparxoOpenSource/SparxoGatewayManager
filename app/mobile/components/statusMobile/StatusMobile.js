@@ -9,6 +9,7 @@ export default class StatusMobile extends React.Component {
     render() {
         return (
             <div style={{ backgroundColor: "#fff", height: "100%" }}>
+            <p>敬请期待</p>
             </div>
         )
     }
