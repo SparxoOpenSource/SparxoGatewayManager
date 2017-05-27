@@ -56,7 +56,7 @@ const getTempData = (info) =>{
 const getInitialStat = (bTime,eTime) =>{
     
     var temp_arr = []
-    while (moment(bTime).valueOf() <= moment(eTime).valueOf()) {
+    while (moment(bTime,"YYYY-M-D").valueOf() <= moment(eTime,"YYYY-M-D").valueOf()) {
         var temp ={
             Date: bTime,
             Count: 0,
@@ -66,7 +66,7 @@ const getInitialStat = (bTime,eTime) =>{
             }
         }
         temp_arr.push(temp)
-        bTime = moment(bTime).add(1,"days").format("YYYY-M-D")
+        bTime = moment(bTime,"YYYY-M-D").add(1,"days").format("YYYY-M-D")
     }
     return temp_arr
 }
