@@ -3,6 +3,7 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var OpenBrowserPlugin = require('open-browser-webpack-plugin') //自动打开浏览器插件
 
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const pxtorem = require('postcss-pxtorem');
 
@@ -53,53 +54,38 @@ module.exports = {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'url-loader?limit=8192' // 这里的 limit=8192 表示用 base64 编码 <= ８K 的图像
             },
-            {
-                test: /\.css$/,
-                loader: 'style!css?importLoaders=1!postcss',
-                postcss: [
-                    pxtorem({
-                        rootValue: 100,
-                        propWhiteList: [],
-                    })
-                ]
-            },
-			// {
+            // {
+            //     test: /\.css$/,
+            //     loader: 'style!css?importLoaders=1!postcss',
+            // },
+            // {
             //     test: /\.css$/,
             //     loader: 'style!css!postcss'
             // },
-            {
-                test: /\.less$/,
-                loader: "style!css!less"
-            },
+            // {
+            //     test: /\.less$/,
+            //     loader: "style!css!postcss!less"
+            // },
             {
                 test: /\.(svg)$/i, loader: 'svg-sprite', include: [
                     require.resolve('antd-mobile').replace(/warn\.js$/, ''),  // 1. 属于 antd-mobile 内置 svg 文件
                     // path.resolve(__dirname, 'src/my-project-svg-foler'),  // 自己私人的 svg 存放目录
                 ]
             },
+            { test: /\.less$/i, loader: ExtractTextPlugin.extract('style', 'css!postcss!less') },
+            { test: /\.css$/i, loader: ExtractTextPlugin.extract('style', 'css!postcss') }
         ]
     },
 
     //高清设置：
-    // postcss: [
-    //     autoprefixer({
-    //         browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
-    //     }),
-    //     pxtorem({ rootValue: 100, propWhiteList: [] })
-    // ],
+    postcss: [
+        autoprefixer({
+            browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
+        }),
+        pxtorem({ rootValue: 100, propWhiteList: [] })
+    ],
 
-    postcss: function() {
-        return [
-            autoprefixer({
-                browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie < 9', // React doesn't support IE8 anyway
-                ]
-            }),
-        ];
-    },
+
     plugins: [
         new HtmlWebpackPlugin({
             template: './app/index.html'
@@ -110,6 +96,8 @@ module.exports = {
             }
         }),
         new webpack.HotModuleReplacementPlugin(), //热加载插件
+
+        new ExtractTextPlugin('[name].css', { allChunks: true }),
 
         new OpenBrowserPlugin({ url: 'admin.sparxotest.com:3011' })
     ]

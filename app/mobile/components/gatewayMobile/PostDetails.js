@@ -17,8 +17,11 @@ export default class PostDetails extends React.Component {
         if (isEmptyObject(eventDetails)) {
             return (<div></div>)
         }
-        const postDataJSON = JSON.parse(Object.values(eventDetails)[0][0].PostData);
-        const responseContentJSON = JSON.parse(Object.values(eventDetails)[0][0].ResponseContent);
+        const vals = Object.keys(eventDetails).map(function (key) {
+            return eventDetails[key];
+        });
+        const postDataJSON = JSON.parse(vals[0][0].PostData);
+        const responseContentJSON = JSON.parse(vals[0][0].ResponseContent);
 
         return (
             <div style={{ backgroundColor: "#fff", height: "100%", overflow: "auto" }}>
@@ -66,3 +69,4 @@ function syntaxHighlight(json) {
         return '<span class="' + cls + '">' + match + '</span>';
     });
 }
+
