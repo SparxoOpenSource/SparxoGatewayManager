@@ -7,7 +7,7 @@
   "license": "ISC",
   "scripts": {
     "start": "webpack-dev-server --progress",
-    "build": "webpack --progress --colors --config webpack.config.pro.js"
+    "build": "webpack --progress --colors --config webpack.config.js"
   },
   "keywords": [],
   "dependencies": {
