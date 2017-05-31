@@ -28,11 +28,11 @@ export default class PostDetails extends React.Component {
                 {
                     pathname.indexOf("postData") !== -1 ?
                         <div>
-                            <pre dangerouslySetInnerHTML={{ __html: syntaxHighlight(postDataJSON) }} style={{ fontSize: "23px" }}></pre>
+                            <pre dangerouslySetInnerHTML={{ __html: syntaxHighlight(postDataJSON) }} style={{ fontSize: "36px" }}></pre>
                         </div>
                         :
                         <div>
-                            <pre dangerouslySetInnerHTML={{ __html: syntaxHighlight(responseContentJSON) }} style={{ fontSize: "23px" }} ></pre>
+                            <pre dangerouslySetInnerHTML={{ __html: syntaxHighlight(responseContentJSON) }} style={{ fontSize: "36px" }} ></pre>
                         </div>
                 }
             </div>

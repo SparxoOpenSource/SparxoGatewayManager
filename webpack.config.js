@@ -20,7 +20,7 @@ module.exports = {
 
     devServer: {
         contentBase: './app',
-        host: "192.168.31.34",
+        //host: "192.168.31.34",
         port: 3011,
         color: true,
         inline: true,
