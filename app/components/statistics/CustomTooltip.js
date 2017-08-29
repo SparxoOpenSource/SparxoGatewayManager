@@ -5,7 +5,6 @@ import { render } from 'react-dom';
 export default class CustomTooltip extends React.Component {
     render() {
         const {active} = this.props
-        //debugger
         if (active) {
             const {payload, label} = this.props
             return (
@@ -21,7 +20,6 @@ export default class CustomTooltip extends React.Component {
 }
 
 const EventsList = ({items}) => {
-    //debugger
     return (
         <div>
             {

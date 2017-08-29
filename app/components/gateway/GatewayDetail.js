@@ -52,8 +52,8 @@ export default class GatewayDetail extends React.Component {
 
     openDetail(record, type) {
 
-        if (type == 'PostData') {
-            var myJSON = JSON.parse(record.PostData);
+        if (type == 'RequestData') {
+            var myJSON = JSON.parse(record.RequestData);
             Modal.info({
                 title: 'PostData',
                 content: (
@@ -65,12 +65,12 @@ export default class GatewayDetail extends React.Component {
                 onOk() { },
             });
         }
-        if (type == "ResponseContent") {
+        if (type == "ResponseData") {
             try {
-                var obj = eval('(' + record.ResponseContent + ')');
-                var myJSON = JSON.parse(record.ResponseContent);
+                var obj = eval('(' + record.ResponseData + ')');
+                var myJSON = JSON.parse(record.ResponseData);
                 Modal.info({
-                    title: 'ResponseContent',
+                    title: 'ResponseData',
                     content: (
                         <div className="detail_content">
                             <pre dangerouslySetInnerHTML={{ __html: syntaxHighlight(myJSON) }}></pre>
@@ -82,10 +82,10 @@ export default class GatewayDetail extends React.Component {
             }
             catch (e) {
                 Modal.info({
-                    title: 'ResponseContent',
+                    title: 'ResponseData',
                     content: (
                         <div className="detail_content">
-                            <div dangerouslySetInnerHTML={{__html: record.ResponseContent}}></div>
+                            <div dangerouslySetInnerHTML={{__html: record.ResponseData}}></div>
                         </div>
                     ),
                     width: '80%',
@@ -139,6 +139,7 @@ export default class GatewayDetail extends React.Component {
 
 
 const Details = ({items, total, pageChange, currentIndex, openDetail}) => {
+    
     const columns = [
         {
             title: 'Id',
@@ -153,10 +154,6 @@ const Details = ({items, total, pageChange, currentIndex, openDetail}) => {
             dataIndex: 'ResponseCode'
         },
         {
-            title: 'Method',
-            dataIndex: 'Method'
-        },
-        {
             title: 'CreateTime',
             dataIndex: 'CreateTimeUtc'
         },
@@ -165,22 +162,22 @@ const Details = ({items, total, pageChange, currentIndex, openDetail}) => {
             dataIndex: 'ResponseTimeUtc'
         },
         {
-            title: 'PostData',
+            title: 'RequestData',
             render: (text, record, index) => {
                 return (
                     <Button type="primary"
                         size="small"
-                        onClick={() => openDetail(record, 'PostData')}>Detail</Button>
+                        onClick={() => openDetail(record, 'RequestData')}>Detail</Button>
                 )
             }
         },
         {
-            title: 'ResponseContent',
+            title: 'ResponseData',
             render: (text, record, index) => {
                 return (
                     <Button type="primary"
                         size="small"
-                        onClick={() => openDetail(record, 'ResponseContent')}>Detail</Button>
+                        onClick={() => openDetail(record, 'ResponseData')}>Detail</Button>
                 )
             }
         },

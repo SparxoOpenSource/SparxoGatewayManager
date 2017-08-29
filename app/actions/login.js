@@ -7,7 +7,6 @@ const urls = {
     login: config.apiRoot + ":5000/gateway/auth/login"
 }
 
-
 export const login = (data) => (dispatch, getState) => {
     dispatch({
         type: "BEGIN_LOADING"
