@@ -1,5 +1,6 @@
 import config from '../../config'
 import format from 'string-format'
+import { hashHistory } from 'react-router'
 
 
 
@@ -40,7 +41,12 @@ class httpService {
             .then(res => {
                 return res.json()
             })
-
+            .catch(ex => {
+                console.log('parsing failed', ex)
+                hashHistory.push({
+                    pathname: '/login'
+                })
+            })
     }
 
     put(data, headers) {
@@ -110,4 +116,19 @@ const addUrlParam = (url, obj) => {
     }
 
     return url;
+}
+
+
+function checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+        return response
+    } else {
+        var error = new Error(response.statusText)
+        error.response = response
+        throw error
+    }
+}
+
+function parseJSON(response) {
+    return response.json()
 }

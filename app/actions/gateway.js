@@ -21,7 +21,7 @@ export const getEvents = (params) => (dispatch, getState) => {
             dispatch({
                 type: "GET_EVENTS_SUCCESS",
                 payload: {
-                    data: data
+                    data: data || []
                 }
             })
 
